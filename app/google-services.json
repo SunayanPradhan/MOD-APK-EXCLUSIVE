@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "838095313443",
+    "project_id": "mod-apk-exclusive",
+    "storage_bucket": "mod-apk-exclusive.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838095313443:android:5bfb2eb244ad4980d96f96",
+        "android_client_info": {
+          "package_name": "com.sunayanpradhan.modapkexclusive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838095313443-i5jopm4krk2mnvjdosvgafescmkqnmlj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDO8e7fd4FJOs02IbjK4ZXKziyhxki_io"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838095313443-i5jopm4krk2mnvjdosvgafescmkqnmlj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_apps"
+        android:icon="@drawable/nav_apps_selector"
+        android:title="Apps">
+    </item>
+
+    <item
+        android:id="@+id/nav_games"
+        android:icon="@drawable/nav_games_selector"
+        android:title="Games">
+    </item>
+
+    <item
+        android:id="@+id/nav_premium"
+        android:icon="@drawable/nav_premium_selector"
+        android:title="Premium">
+    </item>
+
+    <item
+        android:id="@+id/nav_choice"
+        android:icon="@drawable/nav_choice_selector"
+        android:title="Editors' Choice">
+    </item>
+
+</menu>
