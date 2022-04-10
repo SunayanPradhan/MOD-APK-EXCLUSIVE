@@ -1,10 +1,12 @@
 package com.sunayanpradhan.modapkexclusive.Models
 
-data class ScreenshotModel(var appId:String,var screenshotId:String , var screenshot:String)
+data class SlideModel(var slideId:String,var slideImage:String,var slideType:String,var appId:String)
 {
     constructor():this(
         "",
         "",
+        "",
         ""
+
     )
 }

@@ -1,5 +1,6 @@
 package com.sunayanpradhan.modapkexclusive.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,21 +9,24 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView
-import com.denzcoskun.imageslider.ImageSlider
-import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.models.SlideModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.sunayanpradhan.modapkexclusive.Activities.ListActivity
 import com.sunayanpradhan.modapkexclusive.Adapters.AppRecyclerAdapter
+import com.sunayanpradhan.modapkexclusive.Adapters.CategoriesAdapter
+import com.sunayanpradhan.modapkexclusive.Adapters.ImageSliderAdapter
 import com.sunayanpradhan.modapkexclusive.Models.AppModel
+import com.sunayanpradhan.modapkexclusive.Models.CategoriesModel
+import com.sunayanpradhan.modapkexclusive.Models.SlideModel
 import com.sunayanpradhan.modapkexclusive.R
 
 class AppsFragment : Fragment() {
 
-    lateinit var imageSlider:ImageSlider
+    lateinit var imageSlider:ShimmerRecyclerView
 
     lateinit var categoriesLayout:ConstraintLayout
     lateinit var categoryRecyclerView:ShimmerRecyclerView
@@ -37,6 +41,7 @@ class AppsFragment : Fragment() {
     lateinit var recommendedRecyclerView:ShimmerRecyclerView
 
 
+    lateinit var categoryList:ArrayList<CategoriesModel>
     lateinit var trendingList:ArrayList<AppModel>
     lateinit var releaseList:ArrayList<AppModel>
     lateinit var recommendedList:ArrayList<AppModel>
@@ -55,10 +60,8 @@ class AppsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        var v=inflater.inflate(R.layout.fragment_apps,container,false)
 
-
-        return v
+        return inflater.inflate(R.layout.fragment_apps,container,false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,51 +83,170 @@ class AppsFragment : Fragment() {
 
 
 
-        val imageList = ArrayList<SlideModel>() // Create image list
+        var imageList = ArrayList<SlideModel>() // Create image list
+
+        var sliderAdapter=ImageSliderAdapter(imageList,requireContext())
+        var sliderLayoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+
+        imageSlider.layoutManager=sliderLayoutManager
 
 
 
-        imageList.add(SlideModel("https://cdn.unenvironment.org/2022-03/field-ge4d2466da_1920.jpg"))
-        imageList.add(SlideModel("https://cdn.unenvironment.org/2022-03/field-ge4d2466da_1920.jpg"))
-        imageList.add(SlideModel("https://cdn.unenvironment.org/2022-03/field-ge4d2466da_1920.jpg"))
+        FirebaseDatabase.getInstance().reference.child("slide").addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                for (dataSnapshot in snapshot.children){
+
+                    var data:SlideModel?=dataSnapshot.getValue(SlideModel::class.java)
+
+                    data?.slideId=dataSnapshot.key.toString()
+
+                    if (data?.slideType=="app") {
+                        imageList.add(data)
+                    }
+
+                }
+
+                sliderAdapter.notifyDataSetChanged()
+
+                imageSlider.adapter=sliderAdapter
 
 
-        imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP)
 
 
-        trendingList= ArrayList()
-        var trendingAdapter=AppRecyclerAdapter(trendingList, requireActivity())
-        var trendingLayoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,true)
-        trendingRecyclerView.layoutManager=trendingLayoutManager
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
+
+
+
+
+
+
+        categoryList= ArrayList()
+        var categoryAdapter=CategoriesAdapter(categoryList,requireContext())
+        var categoryLayoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        categoryRecyclerView.layoutManager=categoryLayoutManager
+
 
 
         //data fetch
 
-        trendingAdapter.notifyDataSetChanged()
-        trendingRecyclerView.adapter=trendingAdapter
+        FirebaseDatabase.getInstance().reference.child("appCategories").addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (dataSnapshot in snapshot.children){
+                    var data=dataSnapshot.getValue(CategoriesModel::class.java)
+                    data?.categoryId=dataSnapshot.key.toString()
+
+                    if (data?.categoryType=="app") {
+                        categoryList.add(data!!)
+                    }
+
+                }
+
+                categoryAdapter.notifyDataSetChanged()
+                categoryRecyclerView.adapter=categoryAdapter
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+
+
+
+
+
+        trendingList= ArrayList()
+        var trendingAdapter=AppRecyclerAdapter(trendingList, requireActivity())
+        var trendingLayoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        trendingRecyclerView.layoutManager=trendingLayoutManager
+
+
+        //data fetch
+        FirebaseDatabase.getInstance().reference.child("apps").addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (dataSnapshot in snapshot.children){
+
+                    var data=dataSnapshot.getValue(AppModel::class.java)
+
+                    data?.appId= dataSnapshot.key.toString()
+
+                    if (data?.trending==true && data?.appType=="app") {
+                        trendingList.add(data)
+                    }
+
+                }
+
+                trendingAdapter.notifyDataSetChanged()
+                trendingRecyclerView.adapter=trendingAdapter
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
+
+
+
+
 
 
 
         releaseList= ArrayList()
         var releaseAdapter=AppRecyclerAdapter(releaseList, requireActivity())
-        var releaseLayoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,true)
+        var releaseLayoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         releaseRecyclerView.layoutManager=releaseLayoutManager
 
 
         //data fetch
 
+        FirebaseDatabase.getInstance().reference.child("apps").addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (dataSnapshot in snapshot.children) {
+
+                        var data = dataSnapshot.getValue(AppModel::class.java)
+
+                        data?.appId = dataSnapshot.key.toString()
+
+                        if (data?.release == true && data?.appType == "app") {
+                            releaseList.add(data)
+                        }
+
+
+                }
+
+                releaseAdapter.notifyDataSetChanged()
+                releaseRecyclerView.adapter = releaseAdapter
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+        })
 
 
 
-        releaseAdapter.notifyDataSetChanged()
-        releaseRecyclerView.adapter=releaseAdapter
+
+
 
 
 
 
         recommendedList= ArrayList()
         var recommendedAdapter=AppRecyclerAdapter(recommendedList, requireActivity())
-        var recommendedLayoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,true)
+        var recommendedLayoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         recommendedRecyclerView.layoutManager=recommendedLayoutManager
 
 
@@ -140,36 +262,64 @@ class AppsFragment : Fragment() {
 
                     data?.appId= dataSnapshot.key.toString()
 
-                    recommendedList.add(data!!)
+                    if (data?.recommended==true && data?.appType=="app") {
+
+
+
+                            recommendedList.add(data!!)
+
+                    }
 
                 }
+
 
                 recommendedAdapter.notifyDataSetChanged()
                 recommendedRecyclerView.adapter=recommendedAdapter
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show()
             }
 
         })
 
 
 
+        trendingLayout.setOnClickListener {
 
 
+            var intent=Intent(requireContext(),ListActivity::class.java)
+
+            intent.putExtra("keyName","Trending apps")
+            intent.putExtra("keyType","app")
+
+            startActivity(intent)
+
+        }
+
+
+       releaseLayout.setOnClickListener {
+
+
+            var intent=Intent(requireContext(),ListActivity::class.java)
+
+            intent.putExtra("keyName","New release apps")
+            intent.putExtra("keyType","app")
+
+            startActivity(intent)
+
+        }
 
 
         recommendedLayout.setOnClickListener {
 
-            var bundle=Bundle()
-            bundle.putString("key","Recommended apps")
 
-            var listFragment=ListFragment()
+            var intent=Intent(requireContext(),ListActivity::class.java)
 
-            listFragment.arguments=bundle
+            intent.putExtra("keyName","Recommended apps")
+            intent.putExtra("keyType","app")
 
-            fragmentManager?.beginTransaction()?.replace(R.id.fragments,listFragment)?.commit()
+            startActivity(intent)
 
         }
 

@@ -17,17 +17,11 @@
             android:orientation="vertical">
 
 
-            <com.denzcoskun.imageslider.ImageSlider
+            <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                 android:id="@+id/image_slider"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                app:iss_auto_cycle="true"
-                app:iss_period="5000"
-                app:iss_delay="0"
-                app:iss_corner_radius="10"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:iss_corner_radius="10" />
 
 
             <LinearLayout
@@ -67,7 +61,8 @@
                         android:src="@drawable/ic_baseline_arrow_forward_ios_24"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent">
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:visibility="gone">
 
                     </ImageView>
 
@@ -252,7 +247,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
                     app:shimmer_demo_child_count="10"
-                    android:layout_marginBottom="200dp"/>
+                    android:layout_marginBottom="150dp"/>
 
 
 

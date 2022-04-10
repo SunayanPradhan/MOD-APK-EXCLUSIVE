@@ -1,6 +1,7 @@
 package com.sunayanpradhan.modapkexclusive.Adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import com.sunayanpradhan.modapkexclusive.Activities.AppDownloadActivity
 import com.sunayanpradhan.modapkexclusive.Models.AppModel
 import com.sunayanpradhan.modapkexclusive.R
 
@@ -39,6 +41,15 @@ class AppListAdapter(var list: ArrayList<AppModel>,var context:Context):Recycler
         holder.designListCategory.text=currentItem.category
         holder.designListAppsize.text=currentItem.appsize
 
+
+        holder.itemView.setOnClickListener {
+
+            var intent= Intent(context, AppDownloadActivity::class.java)
+            intent.putExtra("appId",currentItem.appId)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context.startActivity(intent)
+
+        }
 
 
     }
