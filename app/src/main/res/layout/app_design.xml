@@ -23,7 +23,7 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/design_logo"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/android"
             android:layout_width="85dp"
             android:layout_height="85dp"
             app:riv_corner_radius="10dp"
@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@+id/design_title"
-            android:text="Title"
+            android:text="MOD APK"
             android:layout_width="85dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

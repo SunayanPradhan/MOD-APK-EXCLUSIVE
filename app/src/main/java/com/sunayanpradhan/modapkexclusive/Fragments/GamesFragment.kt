@@ -98,8 +98,7 @@ class GamesFragment : Fragment() {
 
                 for (dataSnapshot in snapshot.children){
 
-                    var data: com.sunayanpradhan.modapkexclusive.Models.SlideModel?=dataSnapshot.getValue(
-                        com.sunayanpradhan.modapkexclusive.Models.SlideModel::class.java)
+                    var data: SlideModel?=dataSnapshot.getValue(SlideModel::class.java)
 
                     data?.slideId=dataSnapshot.key.toString()
 

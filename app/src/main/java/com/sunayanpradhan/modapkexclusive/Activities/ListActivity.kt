@@ -1,5 +1,6 @@
 package com.sunayanpradhan.modapkexclusive.Activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -31,6 +32,21 @@ class ListActivity : AppCompatActivity() {
         listSearch=findViewById(R.id.list_search)
         listRecyclerView=findViewById(R.id.list_recyclerView)
         list= ArrayList()
+
+
+        listSearchTxt.setOnClickListener {
+
+            startActivity(Intent(this,SearchActivity::class.java))
+            overridePendingTransition(0, 0)
+
+        }
+
+        listSearch.setOnClickListener {
+
+            startActivity(Intent(this,SearchActivity::class.java))
+            overridePendingTransition(0, 0)
+
+        }
 
         var intent=intent
 
@@ -373,6 +389,90 @@ class ListActivity : AppCompatActivity() {
 
 
 
+
+        if (keyName!=null && keyType!=null && keyName=="Editors' Choice apps" && keyType=="app") {
+
+
+            listSearchTxt.text = keyName.toString()
+
+            var adapter = AppListAdapter(list, this)
+            var layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            listRecyclerView.layoutManager = layoutManager
+
+            FirebaseDatabase.getInstance().reference.child("apps")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (dataSnapshot in snapshot.children) {
+
+                            var data = dataSnapshot.getValue(AppModel::class.java)
+
+
+                            data?.appId = dataSnapshot.key.toString()
+
+                            if (data?.editorsChoice==true && data?.appType=="app" ) {
+
+                                list.add(data!!)
+                            }
+
+
+                        }
+
+                        adapter.notifyDataSetChanged()
+                        listRecyclerView.adapter = adapter
+
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+                })
+
+        }
+
+
+
+
+
+        if (keyName!=null && keyType!=null && keyName=="Editors' Choice games" && keyType=="game") {
+
+
+            listSearchTxt.text = keyName.toString()
+
+            var adapter = AppListAdapter(list, this)
+            var layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            listRecyclerView.layoutManager = layoutManager
+
+            FirebaseDatabase.getInstance().reference.child("apps")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (dataSnapshot in snapshot.children) {
+
+                            var data = dataSnapshot.getValue(AppModel::class.java)
+
+
+                            data?.appId = dataSnapshot.key.toString()
+
+                            if (data?.editorsChoice==true && data?.appType=="game" ) {
+
+                                list.add(data!!)
+                            }
+
+
+                        }
+
+                        adapter.notifyDataSetChanged()
+                        listRecyclerView.adapter = adapter
+
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+                })
+
+        }
 
 
 

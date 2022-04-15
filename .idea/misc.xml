@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/NativeTemplatesAndroid-1.0.0/src/main/res/layout/gnt_medium_template_view.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/NativeTemplatesAndroid-1.0.0/src/main/res/layout/gnt_small_template_view.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/drawable-v24/ic_round_search_24.xml" value="0.121" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/drawable/download_bg.xml" value="0.148" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.121" />
@@ -17,6 +19,7 @@
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/drawable/ic_outline_sports_esports_24.xml" value="0.148" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/drawable/ic_outline_workspace_premium_24.xml" value="0.148" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/drawable/ic_round_category_24.xml" value="0.148" />
+        <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/drawable/ic_round_close_24.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/drawable/ic_round_download_24.xml" value="0.148" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/drawable/ic_round_format_indent_decrease_24.xml" value="0.148" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/drawable/ic_round_grid_view_24.xml" value="0.148" />
@@ -30,9 +33,12 @@
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/drawable/nav_premium_selector.xml" value="0.148" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/activity_app_download.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/activity_list.xml" value="0.2" />
-        <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/activity_main.xml" value="0.12" />
+        <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/activity_search.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/activity_splash.xml" value="0.19701086956521738" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/app_design.xml" value="0.6" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/app_list_design.xml" value="0.21195652173913043" />
+        <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/custom_dialog_layout.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/fragment_apps.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/fragment_editors_choice.xml" value="0.21195652173913043" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/fragment_games.xml" value="0.25" />
@@ -40,6 +46,7 @@
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/fragment_premium.xml" value="0.21195652173913043" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/image_slider_design.xml" value="0.19701086956521738" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/screenshot_design.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/layout/se_app_design.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/MODAPKEXCLUSIVE/app/src/main/res/menu/bottom_navigation_bar.xml" value="0.25" />
       </map>
     </option>

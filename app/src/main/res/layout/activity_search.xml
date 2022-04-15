@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.ListActivity">
-
+    tools:context=".Activities.SearchActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:liftOnScroll="true">
+        app:liftOnScroll="true"
+        android:id="@+id/app_bar_layout"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:layout_scrollFlags="scroll|enterAlways">
+            android:background="@color/white">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,46 +25,55 @@
                 android:layout_height="wrap_content">
 
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="5dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:orientation="horizontal">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="5dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="16sp">
 
 
-                    <TextView
-                        android:id="@+id/list_search_txt"
+                    <AutoCompleteTextView
                         android:layout_width="0dp"
-                        android:layout_weight="3"
                         android:layout_height="50dp"
-                        android:layout_marginTop="10dp"
+                        android:id="@+id/app_search"
                         android:background="@drawable/rounded_search"
                         android:drawablePadding="5dp"
-                        android:gravity="center_vertical"
+                        android:imeOptions="actionSearch"
+                        android:hint="Search here..."
                         android:paddingStart="18dp"
                         android:paddingTop="4dp"
                         android:paddingEnd="18dp"
                         android:paddingBottom="5dp"
-                        android:textSize="16sp">
+                        android:textSize="16sp"
+                        android:importantForAutofill="no"
+                        android:inputType="textFilter"
+                        android:layout_weight="3"
+                        android:completionThreshold="1"
+                        android:textColor="@color/black">
 
-                    </TextView>
+                    </AutoCompleteTextView>
+
 
                     <ImageView
-                        android:id="@+id/list_search"
+                        android:id="@+id/search_button"
                         android:src="@drawable/ic_round_search_24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:padding="5dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="20dp">
+                        android:padding="5dp">
 
                     </ImageView>
+
+
 
                 </LinearLayout>
 
@@ -83,19 +88,18 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rvApps"
         android:paddingStart="6dp"
         android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:paddingBottom="5dp"
         android:transitionGroup="true"
         tools:listitem="@layout/app_list_design"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
 
     </androidx.recyclerview.widget.RecyclerView>
 
 
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

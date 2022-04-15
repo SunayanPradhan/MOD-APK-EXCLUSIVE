@@ -19,7 +19,7 @@
             android:layout_width="108dp"
             android:layout_height="192dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher">
+            android:src="@drawable/android">
 
         </ImageView>
 

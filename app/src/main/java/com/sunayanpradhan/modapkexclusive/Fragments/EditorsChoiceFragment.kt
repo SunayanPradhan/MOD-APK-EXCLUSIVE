@@ -56,7 +56,7 @@ class EditorsChoiceFragment : Fragment() {
 
             var intent= Intent(requireContext(), ListActivity::class.java)
 
-            intent.putExtra("keyName","Editors' apps")
+            intent.putExtra("keyName","Editors' Choice apps")
             intent.putExtra("keyType","app")
 
             startActivity(intent)
@@ -68,7 +68,7 @@ class EditorsChoiceFragment : Fragment() {
 
             var intent= Intent(requireContext(), ListActivity::class.java)
 
-            intent.putExtra("keyName","Editors' games")
+            intent.putExtra("keyName","Editors' Choice games")
             intent.putExtra("keyType","game")
 
             startActivity(intent)
@@ -85,8 +85,7 @@ class EditorsChoiceFragment : Fragment() {
 
         //data fetch
 
-
-
+        
         FirebaseDatabase.getInstance().reference.child("apps").addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

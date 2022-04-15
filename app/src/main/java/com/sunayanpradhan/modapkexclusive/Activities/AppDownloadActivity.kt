@@ -1,9 +1,10 @@
 package com.sunayanpradhan.modapkexclusive.Activities
 
+import android.app.AlertDialog
 import android.app.DownloadManager
-import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,6 +12,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView
+import com.google.android.gms.ads.*
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -30,11 +33,13 @@ class AppDownloadActivity : AppCompatActivity() {
     lateinit var aadSize:TextView
     lateinit var aadCategory:TextView
     lateinit var aadInstall:Button
-    lateinit var aadScreenshots:RecyclerView
+    lateinit var aadScreenshots:ShimmerRecyclerView
     lateinit var aadDescription:TextView
 
+
     lateinit var list: ArrayList<ScreenshotModel>
-    var myDownloadId:Long=0
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +54,10 @@ class AppDownloadActivity : AppCompatActivity() {
         aadInstall=findViewById(R.id.aad_install)
         aadScreenshots=findViewById(R.id.aad_screenshots)
         aadDescription=findViewById(R.id.aad_description)
+
+        MobileAds.initialize(this)
+
+
 
         var intent= intent
 
@@ -69,20 +78,75 @@ class AppDownloadActivity : AppCompatActivity() {
 
                 aadInstall.setOnClickListener {
 
-                    try {
-                        val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-                        val uri = Uri.parse(data?.applink)
-                        val request = DownloadManager.Request(uri)
-                        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                        downloadManager.enqueue(request)
-                        Toast.makeText(this@AppDownloadActivity, "Successfully Downloaded", Toast.LENGTH_SHORT)
-                            .show()
-                    } catch (e: Exception) {
-                        Toast.makeText(this@AppDownloadActivity, "Error: " + e.message, Toast.LENGTH_SHORT)
-                            .show()
-                        e.printStackTrace()
+
+                    val dialogView = View.inflate(this@AppDownloadActivity, R.layout.custom_dialog_layout, null)
+
+                    val builder = AlertDialog.Builder(this@AppDownloadActivity).setView(dialogView).create()
+
+                    builder.show()
+
+                    builder.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+                    var dialogCancel = dialogView.findViewById(R.id.dialog_cancel) as ImageView
+                    var dialogDownload=dialogView.findViewById(R.id.dialog_download) as Button
+                    var dialogLogo=dialogView.findViewById(R.id.dialog_logo) as ImageView
+
+                    Picasso.get().load(data?.logo).into(dialogLogo)
+
+                    dialogCancel.setOnClickListener {
+
+                        builder.dismiss()
+
                     }
 
+                    dialogDownload.setOnClickListener {
+
+
+
+
+
+
+                        try {
+                            val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+                            val uri = Uri.parse(data?.applink)
+                            val request = DownloadManager.Request(uri)
+                            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                            downloadManager.enqueue(request)
+                            Toast.makeText(this@AppDownloadActivity, "Download Started", Toast.LENGTH_SHORT)
+                                .show()
+
+                            builder.dismiss()
+
+                        } catch (e: Exception) {
+                            Toast.makeText(this@AppDownloadActivity, "Error: " + e.message, Toast.LENGTH_SHORT)
+                                .show()
+                            e.printStackTrace()
+                        }
+
+                        if (data?.obblink!=""){
+
+                            try {
+                                val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+                                val uri = Uri.parse(data?.obblink)
+                                val request = DownloadManager.Request(uri)
+                                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                                downloadManager.enqueue(request)
+
+                                builder.dismiss()
+
+                            } catch (e: Exception) {
+                                Toast.makeText(this@AppDownloadActivity, "Error: " + e.message, Toast.LENGTH_SHORT)
+                                    .show()
+                                e.printStackTrace()
+                            }
+
+
+
+                        }
+
+
+
+                    }
 
 
                 }
@@ -131,6 +195,7 @@ class AppDownloadActivity : AppCompatActivity() {
 
 
     }
+
 
 
 }

@@ -21,7 +21,8 @@
                 android:id="@+id/game_image_slider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:iss_corner_radius="10" />
+                app:iss_corner_radius="10"
+                app:shimmer_demo_layout="@layout/image_slider_design"/>
 
 
             <LinearLayout

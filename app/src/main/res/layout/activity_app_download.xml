@@ -45,7 +45,7 @@
                         android:id="@+id/aad_logo"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/ic_launcher_background">
+                        android:src="@drawable/android">
 
                     </ImageView>
 
@@ -63,7 +63,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLines="2"
-                        android:text="Title"
+                        android:text="MOD APK"
                         android:textColor="@color/black"
                         android:textSize="20dp"
                         android:textStyle="bold">
@@ -75,7 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLines="1"
-                        android:text="publisher"
+                        android:text="MAE"
                         android:textColor="@color/black"
                         android:textSize="15dp">
 
@@ -281,7 +281,7 @@
             </android.widget.Button>
 
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                 android:id="@+id/aad_screenshots"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -292,7 +292,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/aad_install">
 
 
-            </androidx.recyclerview.widget.RecyclerView>
+            </com.cooltechworks.views.shimmer.ShimmerRecyclerView>
 
 
             <TextView
@@ -320,7 +320,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:autoLink="all"
-                android:text="Description"
+                android:text="MOD APK EXCLUSIVE"
                 android:textColor="@color/black"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"

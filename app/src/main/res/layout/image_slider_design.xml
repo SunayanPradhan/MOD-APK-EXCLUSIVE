@@ -7,7 +7,6 @@
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/is_image"
-        android:src="@drawable/placeholder"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"

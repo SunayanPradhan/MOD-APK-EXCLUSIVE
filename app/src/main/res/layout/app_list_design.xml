@@ -27,7 +27,7 @@
                 android:id="@+id/design_list_logo"
                 android:layout_width="85dp"
                 android:layout_height="85dp"
-                android:src="@drawable/ic_launcher_background"
+                android:src="@drawable/android"
                 app:riv_corner_radius="10dp"
                 android:scaleType="centerCrop">
 
@@ -46,7 +46,7 @@
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:maxLines="1"
-                    android:text="title"
+                    android:text="MOD APK"
                     android:textColor="@color/black"
                     android:textSize="25dp"
                     android:lines="1">
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
-                    android:text="category"
+                    android:text="ANDROID"
                     android:textSize="15dp"
                     android:lines="1">
 
@@ -72,7 +72,7 @@
                     android:layout_gravity="left"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
-                    android:text="size"
+                    android:text="13 MB"
                     android:textColor="@color/black"
                     android:textSize="15dp">
 
